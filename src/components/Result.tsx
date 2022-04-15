@@ -1,7 +1,25 @@
 import "./Common.css";
+import { Plan } from "./Home";
 
-const Result: React.FC<any> = ({ plans }) => {
-  const result = plans.map((plan: any) => {
+type Props = {
+  plans: Plan[];
+  plansCount: number | undefined;
+};
+
+const Result: React.FC<Props> = ({ plans, plansCount }) => {
+  const result = plans.map((plan: Plan) => {
+    console.log(`あああ${plansCount}`);
+    if (plansCount === 0) {
+      return (
+        <div className="wrapper">
+          <div className="ui orange message">
+            <div className="header">
+              ゴルフ場が見つかりませんでした。条件を変更して再度検索してください。
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="item" key={plan.plan_id}>
         <div className="image">
